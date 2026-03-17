@@ -21,7 +21,7 @@ function TagsPage(): JSX.Element {
       daemonRPC,
       LBRY.PREFERENCE_GET,
       { key: "local" },
-      null,
+      undefined,
       LBRY.isUsingProxy(),
     ).then((json: object): void => {
       setLocalPreferenceResponse(json);
@@ -62,7 +62,7 @@ function TagsPage(): JSX.Element {
       daemonRPC,
       LBRY.CLAIM_SEARCH,
       searchOptions,
-      null,
+      undefined,
       LBRY.isUsingProxy(),
     ).then((json: object): void => {
       setItems(json.result.items || json.error?.message || "Unknown error");

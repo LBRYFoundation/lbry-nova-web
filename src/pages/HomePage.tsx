@@ -34,7 +34,7 @@ function HomePage(): JSX.Element {
       daemonRPC,
       LBRY.CLAIM_SEARCH,
       searchOptions,
-      null,
+      undefined,
       LBRY.isUsingProxy(),
     ).then((json: object): void => {
       setRow1(json.result.items);
@@ -59,7 +59,7 @@ function HomePage(): JSX.Element {
         limit_claims_per_channel: 2,
         include_purchase_receipt: true,
       },
-      null,
+      undefined,
       LBRY.isUsingProxy(),
     ).then((json: object): void => {
       setRow2(json.result.items);
@@ -82,7 +82,7 @@ function HomePage(): JSX.Element {
         has_source: true,
         include_purchase_receipt: true,
       },
-      null,
+      undefined,
       LBRY.isUsingProxy(),
     ).then((json: object): void => {
       setRow3(json.result.items);

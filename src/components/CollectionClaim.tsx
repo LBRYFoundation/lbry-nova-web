@@ -20,7 +20,7 @@ function CollectionClaim({ data }: Props & { data: Collection }): JSX.Element {
         ),
         include_purchase_receipt: true,
       },
-      null,
+      undefined,
       LBRY.isUsingProxy(),
     ).then((json: object[unknown]): void => {
       setItems(Object.values(json.result));

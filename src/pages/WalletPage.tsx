@@ -16,8 +16,8 @@ function WalletPage(): JSX.Element {
     LBRY.rpc(
       daemonRPC,
       LBRY.WALLET_BALANCE,
-      null,
-      null,
+      undefined,
+      undefined,
       LBRY.isUsingProxy(),
     ).then((json: object): void => {
       setWalletResponse(json);
@@ -25,11 +25,15 @@ function WalletPage(): JSX.Element {
   }, [daemonRPC]);
 
   useEffect((): void => {
-    LBRY.rpc(daemonRPC, LBRY.TXO_LIST, null, null, LBRY.isUsingProxy()).then(
-      (json: object): void => {
-        setTransactionsResponse(json);
-      },
-    );
+    LBRY.rpc(
+      daemonRPC,
+      LBRY.TXO_LIST,
+      undefined,
+      undefined,
+      LBRY.isUsingProxy(),
+    ).then((json: object): void => {
+      setTransactionsResponse(json);
+    });
   }, [daemonRPC]);
 
   return (

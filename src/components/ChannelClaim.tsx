@@ -31,7 +31,7 @@ function ChannelClaim({ data }: Props & { data: Channel }): JSX.Element {
         release_time: "<1765038660",
         include_purchase_receipt: true,
       },
-      null,
+      undefined,
       LBRY.isUsingProxy(),
     ).then((json: object): void => {
       setContent(json.result.items);
@@ -55,7 +55,7 @@ function ChannelClaim({ data }: Props & { data: Channel }): JSX.Element {
         release_time: "<1765037880",
         include_purchase_receipt: true,
       },
-      null,
+      undefined,
       LBRY.isUsingProxy(),
     ).then((json: object): void => {
       setPlaylists(json.result.items);

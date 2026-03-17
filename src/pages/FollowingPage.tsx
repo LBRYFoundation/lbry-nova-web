@@ -69,7 +69,7 @@ function FollowingPage(): JSX.Element {
       daemonRPC,
       LBRY.CLAIM_SEARCH,
       searchOptions,
-      null,
+      undefined,
       LBRY.isUsingProxy(),
     ).then((json: object): void => {
       setItems(json.result.items || json.error?.message || "Unknown error");

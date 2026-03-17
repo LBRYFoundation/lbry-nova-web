@@ -19,7 +19,7 @@ function ClaimPage(): JSX.Element {
       daemonRPC,
       LBRY.RESOLVE,
       { urls: [claim] },
-      null,
+      undefined,
       LBRY.isUsingProxy(),
     ).then((json: object): void => {
       setClaimResolveData(json.result[claim] ?? null);

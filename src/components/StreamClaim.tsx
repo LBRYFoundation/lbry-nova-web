@@ -26,7 +26,7 @@ function StreamClaim({ data }: Props & { data: Stream }): JSX.Element {
       daemonRPC,
       LBRY.GET,
       { uri: data.canonical_url },
-      null,
+      undefined,
       LBRY.isUsingProxy(),
     ).then((json: object): void => {
       setClaimGetData(json.result);

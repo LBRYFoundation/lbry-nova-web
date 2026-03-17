@@ -1,4 +1,4 @@
-import isElectron from 'is-electron';
+import isElectron from "is-electron";
 import { JSX, PropsWithChildren } from "react";
 import { BrowserRouter, MemoryRouter, StaticRouter } from "react-router";
 

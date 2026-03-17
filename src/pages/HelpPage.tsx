@@ -14,19 +14,27 @@ function HelpPage(): JSX.Element {
   const [versionResponse, setVersionResponse] = useState<object>(undefined);
 
   useEffect((): void => {
-    LBRY.rpc(daemonRPC, LBRY.STATUS, null, null, LBRY.isUsingProxy()).then(
-      (json: object): void => {
-        setStatusResponse(json);
-      },
-    );
+    LBRY.rpc(
+      daemonRPC,
+      LBRY.STATUS,
+      undefined,
+      undefined,
+      LBRY.isUsingProxy(),
+    ).then((json: object): void => {
+      setStatusResponse(json);
+    });
   }, []);
 
   useEffect((): void => {
-    LBRY.rpc(daemonRPC, LBRY.VERSION, null, null, LBRY.isUsingProxy()).then(
-      (json: object): void => {
-        setVersionResponse(json);
-      },
-    );
+    LBRY.rpc(
+      daemonRPC,
+      LBRY.VERSION,
+      undefined,
+      undefined,
+      LBRY.isUsingProxy(),
+    ).then((json: object): void => {
+      setVersionResponse(json);
+    });
   }, []);
 
   return (

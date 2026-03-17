@@ -28,7 +28,7 @@ app.get(
 
     const headers: Headers = new Headers();
     if (req.header("Authorization")) {
-      headers.append("Authorization", req.header("Authorization"));
+      headers.append("Authorization", req.header("Authorization") ?? "");
     }
 
     fetch(req.query.url, {
@@ -64,10 +64,10 @@ app.post(
 
     const headers: Headers = new Headers();
     if (req.header("Authorization")) {
-      headers.append("Authorization", req.header("Authorization"));
+      headers.append("Authorization", req.header("Authorization") ?? "");
     }
     if (req.header("Content-Type")) {
-      headers.append("Content-Type", req.header("Content-Type"));
+      headers.append("Content-Type", req.header("Content-Type") ?? "");
     }
 
     fetch(req.query.url, {

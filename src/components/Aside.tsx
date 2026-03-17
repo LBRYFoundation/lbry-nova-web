@@ -6,13 +6,13 @@ function Aside({ open }): JSX.Element {
   const location: Location = useLocation();
 
   return (
-    <aside className={open ? "menu-open" : null}>
+    <aside className={open ? "menu-open" : undefined}>
       <nav>
         <ul
           className="links"
           style={{ listStyle: "none", margin: 0, padding: 0 }}
         >
-          <li className={location.pathname === "/" ? "item-focus" : null}>
+          <li className={location.pathname === "/" ? "item-focus" : undefined}>
             <NavLink
               style={{
                 display: "inline-block",
@@ -36,7 +36,9 @@ function Aside({ open }): JSX.Element {
             </NavLink>
           </li>
           <li
-            className={location.pathname === "/following" ? "item-focus" : null}
+            className={
+              location.pathname === "/following" ? "item-focus" : undefined
+            }
           >
             <NavLink
               style={{
@@ -60,7 +62,9 @@ function Aside({ open }): JSX.Element {
               <span style={{ verticalAlign: "middle" }}>Following</span>
             </NavLink>
           </li>
-          <li className={location.pathname === "/tags" ? "item-focus" : null}>
+          <li
+            className={location.pathname === "/tags" ? "item-focus" : undefined}
+          >
             <NavLink
               style={{
                 display: "inline-block",
@@ -84,7 +88,9 @@ function Aside({ open }): JSX.Element {
             </NavLink>
           </li>
           <li
-            className={location.pathname === "/discover" ? "item-focus" : null}
+            className={
+              location.pathname === "/discover" ? "item-focus" : undefined
+            }
           >
             <NavLink
               style={{
@@ -109,7 +115,9 @@ function Aside({ open }): JSX.Element {
             </NavLink>
           </li>
           <li
-            className={location.pathname === "/library" ? "item-focus" : null}
+            className={
+              location.pathname === "/library" ? "item-focus" : undefined
+            }
           >
             <NavLink
               style={{
@@ -133,7 +141,11 @@ function Aside({ open }): JSX.Element {
               <span style={{ verticalAlign: "middle" }}>Library</span>
             </NavLink>
           </li>
-          <li className={location.pathname === "/lists" ? "item-focus" : null}>
+          <li
+            className={
+              location.pathname === "/lists" ? "item-focus" : undefined
+            }
+          >
             <NavLink
               style={{
                 display: "inline-block",

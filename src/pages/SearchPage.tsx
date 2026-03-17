@@ -22,7 +22,7 @@ function SearchPage(): JSX.Element {
         urls: ["lbry://" + query, "lbry://@" + query],
         include_purchase_receipt: true,
       },
-      null,
+      undefined,
       LBRY.isUsingProxy(),
     ).then((json: object): void => {
       if (
@@ -53,7 +53,7 @@ function SearchPage(): JSX.Element {
         order_by: ["release_time"],
         text: query,
       },
-      null,
+      undefined,
       LBRY.isUsingProxy(),
     ).then((json: object): void => {
       setChannelSearchItems(json.result.items);

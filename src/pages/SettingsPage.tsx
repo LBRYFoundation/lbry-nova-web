@@ -13,8 +13,8 @@ function SettingsPage(): JSX.Element {
     LBRY.rpc(
       daemonRPC,
       LBRY.SETTINGS_GET,
-      null,
-      null,
+      undefined,
+      undefined,
       LBRY.isUsingProxy(),
     ).then((json: object): void => {
       setSettingsResponse(json);
