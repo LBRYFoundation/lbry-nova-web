@@ -21,7 +21,7 @@ body {
     Segoe UI Symbol;
 }
 
-#root {
+#root.has-header {
   height: 100%;
   padding-top: 60px;
 }
@@ -233,8 +233,8 @@ video {
 }
 
 footer {
-  background: rgba(17, 17, 17, 0.9);
   color: white;
+  font-size: 10px;
   padding: 8px;
   text-align: center;
 }

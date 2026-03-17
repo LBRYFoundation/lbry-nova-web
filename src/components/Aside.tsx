@@ -1,6 +1,7 @@
 import React, { JSX } from "react";
 import { Link, Location, NavLink, useLocation } from "react-router";
 import CustomSVG from "~/components/CustomSVG";
+import Footer from "~/components/Footer";
 
 function Aside({ open }): JSX.Element {
   const location: Location = useLocation();
@@ -191,6 +192,7 @@ function Aside({ open }): JSX.Element {
           </>
         ) : null}
       </nav>
+      {open ? <Footer /> : null}
     </aside>
   );
 }

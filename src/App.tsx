@@ -4,6 +4,7 @@ import AppRouter from "~/AppRouter";
 import AppRoutes from "~/AppRoutes";
 import Aside from "~/components/Aside";
 import Header from "~/components/Header";
+import ServersPage from "~/pages/ServersPage";
 
 // import Footer from "~/components/Footer";
 
@@ -14,15 +15,26 @@ function App({ url }: Props & { url?: string }): JSX.Element {
   return (
     <StrictMode>
       <AppRouter url={url}>
-        <Header menuOpen={isMenuOpen} menuOpenSetter={setMenuOpen} />
-        {isMenuShown ? <Aside open={isMenuOpen} /> : null}
-        <main>
-          <AppRoutes />
-        </main>
-        {/*<Footer/>*/}
+        {isRPCServerSelected() ? (
+          <>
+            <Header menuOpen={isMenuOpen} menuOpenSetter={setMenuOpen} />
+            {isMenuShown ? <Aside open={isMenuOpen} /> : null}
+            <main className="has-header">
+              <AppRoutes />
+            </main>
+          </>
+        ) : (
+          <main>
+            <ServersPage />
+          </main>
+        )}
       </AppRouter>
     </StrictMode>
   );
+}
+
+function isRPCServerSelected(): boolean {
+  return false;
 }
 
 export default App;
