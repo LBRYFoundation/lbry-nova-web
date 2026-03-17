@@ -6,8 +6,6 @@ import Aside from "~/components/Aside";
 import Header from "~/components/Header";
 import ServersPage from "~/pages/ServersPage";
 
-// import Footer from "~/components/Footer";
-
 function App({ url }: Props & { url?: string }): JSX.Element {
   const [isMenuOpen, setMenuOpen] = useState<boolean>(false);
   const [isMenuShown] = useState<boolean>(true);

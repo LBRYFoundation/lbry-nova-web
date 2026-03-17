@@ -21,9 +21,13 @@ body {
     Segoe UI Symbol;
 }
 
-#root.has-header {
+#root {
   height: 100%;
   padding-top: 60px;
+}
+
+#root:has(+ .has-header){
+  padding-top: 0;
 }
 
 header {
