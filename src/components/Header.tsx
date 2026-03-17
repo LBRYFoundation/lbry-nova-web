@@ -146,7 +146,7 @@ function Header({ menuOpen, menuOpenSetter }): JSX.Element {
                 verticalAlign: "middle",
               }}
             >
-              LBRY Web
+              LBRY Nova
             </span>
           </Link>
         </div>

@@ -1,9 +1,9 @@
-# LBRY Web
+# LBRY Nova for Web
 
-[![Node.js CI](https://github.com/LBRYFoundation/lbry-web/actions/workflows/node.js.yml/badge.svg)](https://github.com/LBRYFoundation/lbry-web/actions/workflows/node.js.yml)
-[![Docker Image CI](https://github.com/LBRYFoundation/lbry-web/actions/workflows/docker-image.yml/badge.svg)](https://github.com/LBRYFoundation/lbry-web/actions/workflows/docker-image.yml)
+[![Node.js CI](https://github.com/LBRYFoundation/lbry-nova-web/actions/workflows/node.js.yml/badge.svg)](https://github.com/LBRYFoundation/lbry-nova-web/actions/workflows/node.js.yml)
+[![Docker Image CI](https://github.com/LBRYFoundation/lbry-nova-web/actions/workflows/docker-image.yml/badge.svg)](https://github.com/LBRYFoundation/lbry-nova-web/actions/workflows/docker-image.yml)
 
-The LBRY Web interface to interact with the LBRY Daemon from in the browser.
+The LBRY Nova interface to interact with the LBRY Daemon from in the browser.
 
 ## Installation
 
@@ -44,13 +44,13 @@ npm run start
 Building the image:
 
 ```shell
-docker build . -t lbry-web
+docker build . -t lbry-nova-web
 ```
 
 Running the container:
 
 ```shell
-docker run --name lbry-web --network host --restart always lbry-web
+docker run --name lbry-nova-web --network host --restart always lbry-nova-web
 ```
 
 ### With Docker Compose

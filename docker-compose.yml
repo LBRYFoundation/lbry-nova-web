@@ -2,7 +2,7 @@ services:
   web:
     build:
       dockerfile: Dockerfile
-    container_name: lbry-web
+    container_name: lbry-nova-web
     network_mode: host
     env_file: .env
     restart: always
