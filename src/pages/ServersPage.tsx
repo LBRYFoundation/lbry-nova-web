@@ -41,6 +41,9 @@ function ServersPage(): JSX.Element {
           href="#"
           key={i}
           style={{
+            backgroundColor:
+              (daemon.state === "offline" ? "#FF00001F" : "") +
+              (daemon.state === "online" ? "#00FF001F" : ""),
             border: "1px solid gray",
             color: "white",
             display: "inline-block",
