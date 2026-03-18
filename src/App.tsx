@@ -1,7 +1,8 @@
-import React, { JSX, StrictMode, useState } from "react";
+import React, { JSX, StrictMode, useEffect, useState } from "react";
 import Props from "react";
 import AppRouter from "~/AppRouter";
 import AppRoutes from "~/AppRoutes";
+import LBRY from "~/LBRY";
 import Aside from "~/components/Aside";
 import Header from "~/components/Header";
 import ServersPage from "~/pages/ServersPage";
@@ -10,10 +11,20 @@ function App({ url }: Props & { url?: string }): JSX.Element {
   const [isMenuOpen, setMenuOpen] = useState<boolean>(false);
   const [isMenuShown] = useState<boolean>(true);
 
+  const [hasDaemonRPC, setHasDaemonRPC] = useState<boolean>(false);
+
+  window.addEventListener("storage", (): void => {
+    setHasDaemonRPC(LBRY.getDaemonRPC() !== null);
+  });
+
+  useEffect((): void => {
+    LBRY.setDaemonRPC(import.meta.env.VITE_DAEMON_STATIC ?? null);
+  }, []);
+
   return (
     <StrictMode>
       <AppRouter url={url}>
-        {isRPCServerSelected() ? (
+        {hasDaemonRPC ? (
           <>
             <Header menuOpen={isMenuOpen} menuOpenSetter={setMenuOpen} />
             {isMenuShown ? <Aside open={isMenuOpen} /> : null}
@@ -29,10 +40,6 @@ function App({ url }: Props & { url?: string }): JSX.Element {
       </AppRouter>
     </StrictMode>
   );
-}
-
-function isRPCServerSelected(): boolean {
-  return false;
 }
 
 export default App;

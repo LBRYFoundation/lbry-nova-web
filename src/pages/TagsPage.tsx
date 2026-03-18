@@ -1,6 +1,5 @@
 import React, { JSX, useEffect, useState } from "react";
 import { NOT_TAGS } from "~/Constants";
-import useDaemonRPC from "~/DaemonRPC";
 import LBRY from "~/LBRY";
 import ClaimPreviewTile from "~/components/ClaimPreviewTile";
 import CustomSVG from "~/components/CustomSVG";
@@ -8,8 +7,6 @@ import Error from "~/components/Error";
 import Loader from "~/components/Loader";
 
 function TagsPage(): JSX.Element {
-  const daemonRPC: string = useDaemonRPC();
-
   const [localPreferenceResponse, setLocalPreferenceResponse] =
     useState<object>(undefined);
   const [tags, setTags] = useState<string[]>([]);
@@ -18,7 +15,7 @@ function TagsPage(): JSX.Element {
 
   useEffect((): void => {
     LBRY.rpc(
-      daemonRPC,
+      LBRY.getDaemonRPC(),
       LBRY.PREFERENCE_GET,
       { key: "local" },
       undefined,
@@ -59,7 +56,7 @@ function TagsPage(): JSX.Element {
     };
 
     LBRY.rpc(
-      daemonRPC,
+      LBRY.getDaemonRPC(),
       LBRY.CLAIM_SEARCH,
       searchOptions,
       undefined,
@@ -67,7 +64,7 @@ function TagsPage(): JSX.Element {
     ).then((json: object): void => {
       setItems(json.result.items || json.error?.message || "Unknown error");
     });
-  }, [daemonRPC, tags, toggle]);
+  }, [tags, toggle]);
 
   return (
     <>

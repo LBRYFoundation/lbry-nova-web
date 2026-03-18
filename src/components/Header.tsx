@@ -16,6 +16,7 @@ import {
   useNavigate,
 } from "react-router";
 import useAppHistory from "~/AppHistory";
+import LBRY from "~/LBRY";
 import CustomSVG from "~/components/CustomSVG";
 
 function Header({ menuOpen, menuOpenSetter }): JSX.Element {
@@ -438,6 +439,26 @@ function Header({ menuOpen, menuOpenSetter }): JSX.Element {
                       }}
                     />{" "}
                     <span>Light/Dark</span>
+                  </NavLink>
+                </li>
+                <li>
+                  <NavLink
+                    onClick={(): void => LBRY.setDaemonRPC(null)}
+                    to={null}
+                  >
+                    <CustomSVG
+                      icon="inside"
+                      viewBox="0 0 24 24"
+                      style={{
+                        fill: "transparent",
+                        height: "18px",
+                        paddingRight: "4px",
+                        stroke: "white",
+                        strokeWidth: "2px",
+                        verticalAlign: "middle",
+                      }}
+                    />{" "}
+                    <span>Switch daemons</span>
                   </NavLink>
                 </li>
               </ul>

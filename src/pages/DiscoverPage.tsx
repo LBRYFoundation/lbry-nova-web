@@ -1,14 +1,11 @@
 import React, { JSX, useEffect, useState } from "react";
 import { NOT_TAGS } from "~/Constants";
-import useDaemonRPC from "~/DaemonRPC";
 import LBRY from "~/LBRY";
 import ClaimPreviewTile from "~/components/ClaimPreviewTile";
 import CustomSVG from "~/components/CustomSVG";
 import Loader from "~/components/Loader";
 
 function DiscoverPage(): JSX.Element {
-  const daemonRPC: string = useDaemonRPC();
-
   const [items, setItems] = useState<object[] | string | null>(null);
   const [toggle, setToggle] = useState<string>("new");
 
@@ -40,7 +37,7 @@ function DiscoverPage(): JSX.Element {
     };
 
     LBRY.rpc(
-      daemonRPC,
+      LBRY.getDaemonRPC(),
       LBRY.CLAIM_SEARCH,
       searchOptions,
       undefined,
@@ -48,7 +45,7 @@ function DiscoverPage(): JSX.Element {
     ).then((json: object): void => {
       setItems(json.result.items || json.error?.message || "Unknown error");
     });
-  }, [daemonRPC, toggle]);
+  }, [toggle]);
 
   return (
     <>

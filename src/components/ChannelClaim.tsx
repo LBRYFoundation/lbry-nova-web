@@ -1,22 +1,19 @@
 import Props, { JSX, useEffect, useState } from "react";
 import { Link } from "react-router";
 import { NOT_TAGS } from "~/Constants";
-import useDaemonRPC from "~/DaemonRPC";
 import LBRY from "~/LBRY";
 import ClaimPreviewTile from "~/components/ClaimPreviewTile";
 import CustomSVG from "~/components/CustomSVG";
 import Error from "~/components/Error";
 
 function ChannelClaim({ data }: Props & { data: Channel }): JSX.Element {
-  const daemonRPC: string = useDaemonRPC();
-
   const [tab, setTab] = useState<string>("content");
   const [content, setContent] = useState<object[]>([]);
   const [playlists, setPlaylists] = useState<object[]>([]);
 
   useEffect((): void => {
     LBRY.rpc(
-      daemonRPC,
+      LBRY.getDaemonRPC(),
       LBRY.CLAIM_SEARCH,
       {
         page_size: 20,
@@ -36,11 +33,11 @@ function ChannelClaim({ data }: Props & { data: Channel }): JSX.Element {
     ).then((json: object): void => {
       setContent(json.result.items);
     });
-  }, [data.claim_id, daemonRPC]);
+  }, [data.claim_id]);
 
   useEffect((): void => {
     LBRY.rpc(
-      daemonRPC,
+      LBRY.getDaemonRPC(),
       LBRY.CLAIM_SEARCH,
       {
         page_size: 20,
@@ -60,7 +57,7 @@ function ChannelClaim({ data }: Props & { data: Channel }): JSX.Element {
     ).then((json: object): void => {
       setPlaylists(json.result.items);
     });
-  }, [data.claim_id, daemonRPC]);
+  }, [data.claim_id]);
 
   return (
     <div>

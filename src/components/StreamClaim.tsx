@@ -1,6 +1,5 @@
 import Props, { JSX, useEffect, useState } from "react";
 import Markdown from "react-markdown";
-import useDaemonRPC from "~/DaemonRPC";
 import LBRY from "~/LBRY";
 
 function downloadMarkdownFile(claimGetData, setMarkdown): void {
@@ -16,14 +15,12 @@ function downloadMarkdownFile(claimGetData, setMarkdown): void {
 }
 
 function StreamClaim({ data }: Props & { data: Stream }): JSX.Element {
-  const daemonRPC: string = useDaemonRPC();
-
   const [claimGetData, setClaimGetData] = useState<object[unknown]>(null);
   const [markdown, setMarkdown] = useState<string>("");
 
   useEffect((): void => {
     LBRY.rpc(
-      daemonRPC,
+      LBRY.getDaemonRPC(),
       LBRY.GET,
       { uri: data.canonical_url },
       undefined,
@@ -31,7 +28,7 @@ function StreamClaim({ data }: Props & { data: Stream }): JSX.Element {
     ).then((json: object): void => {
       setClaimGetData(json.result);
     });
-  }, [data, daemonRPC]);
+  }, [data]);
 
   //
   const [recommendedIsChannelItems, setRecommendedIsChannelItems] =

@@ -18,6 +18,29 @@ function isUsingProxy(): boolean {
   return import.meta.env.VITE_DAEMON_PROXY === "true";
 }
 
+const storageDaemonRPCKey: string = "daemon-rpc";
+
+function getDaemonRPC(): string | null {
+  return sessionStorage.getItem(storageDaemonRPCKey);
+}
+
+function setDaemonRPC(url: string | null): void {
+  let oldURL: string | null = getDaemonRPC();
+  if (url === null) {
+    sessionStorage.removeItem(storageDaemonRPCKey);
+  } else {
+    sessionStorage.setItem(storageDaemonRPCKey, url);
+  }
+  window.dispatchEvent(
+    new StorageEvent("storage", {
+      key: storageDaemonRPCKey,
+      newValue: url,
+      oldValue: oldURL,
+      storageArea: sessionStorage,
+    }),
+  );
+}
+
 async function rpcDirect(
   input: string | URL | Request,
   method: string,
@@ -66,16 +89,16 @@ async function rpcProxy(
 }
 
 async function rpc(
-  input: string | URL | Request,
+  input: string | URL | Request | null,
   method: string,
   params?: object,
   authorization?: string,
   proxy?: boolean,
 ): Promise<object> {
   if (proxy) {
-    return await rpcProxy(input, method, params, authorization);
+    return await rpcProxy(input ?? "", method, params, authorization);
   }
-  return await rpcDirect(input, method, params, authorization);
+  return await rpcDirect(input ?? "", method, params, authorization);
 }
 
 export default {
@@ -88,6 +111,8 @@ export default {
   TXO_LIST,
   VERSION,
   WALLET_BALANCE,
+  getDaemonRPC,
+  setDaemonRPC,
   isUsingProxy,
   rpc,
 };

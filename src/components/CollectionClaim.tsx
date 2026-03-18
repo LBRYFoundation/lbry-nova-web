@@ -1,17 +1,14 @@
 import Props, { JSX, useEffect, useState } from "react";
 import { Link } from "react-router";
-import useDaemonRPC from "~/DaemonRPC";
 import LBRY from "~/LBRY";
 import ClaimPreviewTile from "~/components/ClaimPreviewTile";
 
 function CollectionClaim({ data }: Props & { data: Collection }): JSX.Element {
-  const daemonRPC: string = useDaemonRPC();
-
   const [items, setItems] = useState<object[]>([]);
 
   useEffect((): void => {
     LBRY.rpc(
-      daemonRPC,
+      LBRY.getDaemonRPC(),
       LBRY.RESOLVE,
       {
         urls: data.value.claims.map(
@@ -25,7 +22,7 @@ function CollectionClaim({ data }: Props & { data: Collection }): JSX.Element {
     ).then((json: object[unknown]): void => {
       setItems(Object.values(json.result));
     });
-  }, [daemonRPC]);
+  }, []);
 
   return (
     <div>

@@ -1,21 +1,18 @@
 import packageJSON from "/package.json";
 import React, { JSX, useEffect, useState } from "react";
 import { Link } from "react-router";
-import useDaemonRPC from "~/DaemonRPC";
 import LBRY from "~/LBRY";
 import CustomSVG from "~/components/CustomSVG";
 import Error from "~/components/Error";
 import Loader from "~/components/Loader";
 
 function HelpPage(): JSX.Element {
-  const daemonRPC: string = useDaemonRPC();
-
   const [statusResponse, setStatusResponse] = useState<object>(undefined);
   const [versionResponse, setVersionResponse] = useState<object>(undefined);
 
   useEffect((): void => {
     LBRY.rpc(
-      daemonRPC,
+      LBRY.getDaemonRPC(),
       LBRY.STATUS,
       undefined,
       undefined,
@@ -27,7 +24,7 @@ function HelpPage(): JSX.Element {
 
   useEffect((): void => {
     LBRY.rpc(
-      daemonRPC,
+      LBRY.getDaemonRPC(),
       LBRY.VERSION,
       undefined,
       undefined,

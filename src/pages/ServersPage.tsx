@@ -1,8 +1,9 @@
 import React, { JSX } from "react";
+import LBRY from "~/LBRY";
 import CustomSVG from "~/components/CustomSVG";
 
 function ServersPage(): JSX.Element {
-  var daemons = [
+  var daemons: unknown[] = [
     {
       name: "My local LBRY setup",
       url: "http://localhost:5279",
@@ -40,6 +41,10 @@ function ServersPage(): JSX.Element {
         <a
           href="#"
           key={i}
+          onClick={(event): void => {
+            event.preventDefault();
+            LBRY.setDaemonRPC(daemon.url);
+          }}
           style={{
             backgroundColor:
               (daemon.state === "offline" ? "#FF00001F" : "") +

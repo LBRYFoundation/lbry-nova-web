@@ -1,12 +1,10 @@
 import { JSX, useEffect, useState } from "react";
 import { Location, useLocation } from "react-router";
 import { NOT_TAGS } from "~/Constants";
-import useDaemonRPC from "~/DaemonRPC";
 import LBRY from "~/LBRY";
 import ClaimPreviewTile from "~/components/ClaimPreviewTile";
 
 function SearchPage(): JSX.Element {
-  const daemonRPC: string = useDaemonRPC();
   const location: Location = useLocation();
 
   const query: string | null = new URLSearchParams(location.search).get("q");
@@ -16,7 +14,7 @@ function SearchPage(): JSX.Element {
 
   useEffect((): void => {
     LBRY.rpc(
-      daemonRPC,
+      LBRY.getDaemonRPC(),
       LBRY.RESOLVE,
       {
         urls: ["lbry://" + query, "lbry://@" + query],
@@ -40,11 +38,11 @@ function SearchPage(): JSX.Element {
         return;
       }
     });
-  }, [daemonRPC, query]);
+  }, [query]);
 
   useEffect((): void => {
     LBRY.rpc(
-      daemonRPC,
+      LBRY.getDaemonRPC(),
       LBRY.CLAIM_SEARCH,
       {
         page_size: 20,
@@ -58,7 +56,7 @@ function SearchPage(): JSX.Element {
     ).then((json: object): void => {
       setChannelSearchItems(json.result.items);
     });
-  }, [daemonRPC, query]);
+  }, [query]);
 
   return (
     <div>

@@ -1,20 +1,17 @@
 import React, { JSX, useEffect, useState } from "react";
 import { Link } from "react-router";
-import useDaemonRPC from "~/DaemonRPC";
 import LBRY from "~/LBRY";
 import Error from "~/components/Error";
 import Loader from "~/components/Loader";
 
 function WalletPage(): JSX.Element {
-  const daemonRPC: string = useDaemonRPC();
-
   const [walletResponse, setWalletResponse] = useState<object>(undefined);
   const [transactionsResponse, setTransactionsResponse] =
     useState<object>(undefined);
 
   useEffect((): void => {
     LBRY.rpc(
-      daemonRPC,
+      LBRY.getDaemonRPC(),
       LBRY.WALLET_BALANCE,
       undefined,
       undefined,
@@ -22,11 +19,11 @@ function WalletPage(): JSX.Element {
     ).then((json: object): void => {
       setWalletResponse(json);
     });
-  }, [daemonRPC]);
+  }, []);
 
   useEffect((): void => {
     LBRY.rpc(
-      daemonRPC,
+      LBRY.getDaemonRPC(),
       LBRY.TXO_LIST,
       undefined,
       undefined,
@@ -34,7 +31,7 @@ function WalletPage(): JSX.Element {
     ).then((json: object): void => {
       setTransactionsResponse(json);
     });
-  }, [daemonRPC]);
+  }, []);
 
   return (
     <>

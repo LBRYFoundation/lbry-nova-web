@@ -1,14 +1,11 @@
 import { JSX, useEffect, useState } from "react";
 import { Params, useParams } from "react-router";
-import useDaemonRPC from "~/DaemonRPC";
 import LBRY from "~/LBRY";
 import Claim from "~/components/Claim";
 import Error from "~/components/Error";
 import Loader from "~/components/Loader";
 
 function ClaimPage(): JSX.Element {
-  const daemonRPC: string = useDaemonRPC();
-
   const params: Params<string> = useParams();
   const claim: string = params["*"];
 
@@ -16,7 +13,7 @@ function ClaimPage(): JSX.Element {
 
   useEffect((): void => {
     LBRY.rpc(
-      daemonRPC,
+      LBRY.getDaemonRPC(),
       LBRY.RESOLVE,
       { urls: [claim] },
       undefined,
@@ -24,7 +21,7 @@ function ClaimPage(): JSX.Element {
     ).then((json: object): void => {
       setClaimResolveData(json.result[claim] ?? null);
     });
-  }, [claim, daemonRPC]);
+  }, [claim]);
 
   if (!claimResolveData) {
     return <Loader />;

@@ -1,13 +1,10 @@
 import { JSX, useEffect, useState } from "react";
 import { NOT_TAGS } from "~/Constants";
-import useDaemonRPC from "~/DaemonRPC";
 import LBRY from "~/LBRY";
 import ClaimPreviewTile from "~/components/ClaimPreviewTile";
 import Loader from "~/components/Loader";
 
 function HomePage(): JSX.Element {
-  const daemonRPC: string = useDaemonRPC();
-
   const [row1, setRow1] = useState<object[]>([]);
   const [row2, setRow2] = useState<object[]>([]);
   const [row3, setRow3] = useState<object[]>([]);
@@ -31,7 +28,7 @@ function HomePage(): JSX.Element {
     };
 
     LBRY.rpc(
-      daemonRPC,
+      LBRY.getDaemonRPC(),
       LBRY.CLAIM_SEARCH,
       searchOptions,
       undefined,
@@ -39,11 +36,11 @@ function HomePage(): JSX.Element {
     ).then((json: object): void => {
       setRow1(json.result.items);
     });
-  }, [daemonRPC]);
+  }, []);
 
   useEffect((): void => {
     LBRY.rpc(
-      daemonRPC,
+      LBRY.getDaemonRPC(),
       LBRY.CLAIM_SEARCH,
       {
         page_size: 4,
@@ -64,11 +61,11 @@ function HomePage(): JSX.Element {
     ).then((json: object): void => {
       setRow2(json.result.items);
     });
-  }, [daemonRPC]);
+  }, []);
 
   useEffect((): void => {
     LBRY.rpc(
-      daemonRPC,
+      LBRY.getDaemonRPC(),
       LBRY.CLAIM_SEARCH,
       {
         page_size: 4,
@@ -87,7 +84,7 @@ function HomePage(): JSX.Element {
     ).then((json: object): void => {
       setRow3(json.result.items);
     });
-  }, [daemonRPC]);
+  }, []);
 
   return (
     <>

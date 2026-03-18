@@ -1,17 +1,14 @@
 import React, { JSX, useEffect, useState } from "react";
-import useDaemonRPC from "~/DaemonRPC";
 import LBRY from "~/LBRY";
 import Error from "~/components/Error";
 import Loader from "~/components/Loader";
 
 function SettingsPage(): JSX.Element {
-  const daemonRPC: string = useDaemonRPC();
-
   const [settingsResponse, setSettingsResponse] = useState<object>(undefined);
 
   useEffect((): void => {
     LBRY.rpc(
-      daemonRPC,
+      LBRY.getDaemonRPC(),
       LBRY.SETTINGS_GET,
       undefined,
       undefined,
@@ -19,7 +16,7 @@ function SettingsPage(): JSX.Element {
     ).then((json: object): void => {
       setSettingsResponse(json);
     });
-  }, [daemonRPC]);
+  }, []);
 
   return (
     <>
