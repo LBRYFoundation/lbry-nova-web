@@ -18,7 +18,7 @@ function App({ url }: Props & { url?: string }): JSX.Element {
   });
 
   useEffect((): void => {
-    LBRY.setDaemonRPC(import.meta.env.VITE_DAEMON_STATIC ?? null);
+    LBRY.setDaemonRPC(LBRY.getDaemonRPC());
   }, []);
 
   return (

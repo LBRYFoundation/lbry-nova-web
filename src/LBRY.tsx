@@ -20,7 +20,15 @@ function isUsingProxy(): boolean {
 
 const storageDaemonRPCKey: string = "daemon-rpc";
 
+function getStaticDaemonRPC(): string | null {
+  return import.meta.env.VITE_DAEMON_STATIC ?? null;
+}
+
 function getDaemonRPC(): string | null {
+  let staticDaemonRPC: string | null = getStaticDaemonRPC();
+  if (staticDaemonRPC) {
+    return staticDaemonRPC;
+  }
   return sessionStorage.getItem(storageDaemonRPCKey);
 }
 
@@ -112,6 +120,7 @@ export default {
   VERSION,
   WALLET_BALANCE,
   getDaemonRPC,
+  getStaticDaemonRPC,
   setDaemonRPC,
   isUsingProxy,
   rpc,
