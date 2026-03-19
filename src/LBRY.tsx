@@ -25,7 +25,7 @@ function getStaticDaemonRPC(): string | null {
 }
 
 function getDaemonRPC(): string | null {
-  let staticDaemonRPC: string | null = getStaticDaemonRPC();
+  const staticDaemonRPC: string | null = getStaticDaemonRPC();
   if (staticDaemonRPC) {
     return staticDaemonRPC;
   }
@@ -33,7 +33,7 @@ function getDaemonRPC(): string | null {
 }
 
 function setDaemonRPC(url: string | null): void {
-  let oldURL: string | null = getDaemonRPC();
+  const oldURL: string | null = getDaemonRPC();
   if (url === null) {
     sessionStorage.removeItem(storageDaemonRPCKey);
   } else {

@@ -3,7 +3,7 @@ import LBRY from "~/LBRY";
 import CustomSVG from "~/components/CustomSVG";
 
 function ServersPage(): JSX.Element {
-  var daemons: unknown[] = [
+  const daemons: unknown[] = [
     {
       name: "My local LBRY setup",
       url: "http://localhost:5279",
