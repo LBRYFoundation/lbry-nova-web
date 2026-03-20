@@ -7,8 +7,12 @@ import Error from "~/components/Error";
 import Loader from "~/components/Loader";
 
 function HelpPage(): JSX.Element {
-  const [statusResponse, setStatusResponse] = useState<object|undefined>(undefined);
-  const [versionResponse, setVersionResponse] = useState<object|undefined>(undefined);
+  const [statusResponse, setStatusResponse] = useState<object | undefined>(
+    undefined,
+  );
+  const [versionResponse, setVersionResponse] = useState<object | undefined>(
+    undefined,
+  );
 
   useEffect((): void => {
     LBRY.rpc(

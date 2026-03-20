@@ -44,14 +44,14 @@ function setDaemonRPC(url: string | null): void {
     key: storageDaemonRPCKey,
     storageArea: sessionStorage,
   };
-  if(url){
+  if (url) {
     eventDict.newValue = url;
   }
-  if(oldURL){
+  if (oldURL) {
     eventDict.oldValue = oldURL;
   }
 
-  const event: StorageEvent = new StorageEvent("storage",eventDict);
+  const event: StorageEvent = new StorageEvent("storage", eventDict);
 
   window.dispatchEvent(event);
 }

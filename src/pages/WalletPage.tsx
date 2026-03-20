@@ -5,9 +5,12 @@ import Error from "~/components/Error";
 import Loader from "~/components/Loader";
 
 function WalletPage(): JSX.Element {
-  const [walletResponse, setWalletResponse] = useState<object|undefined>(undefined);
-  const [transactionsResponse, setTransactionsResponse] =
-    useState<object|undefined>(undefined);
+  const [walletResponse, setWalletResponse] = useState<object | undefined>(
+    undefined,
+  );
+  const [transactionsResponse, setTransactionsResponse] = useState<
+    object | undefined
+  >(undefined);
 
   useEffect((): void => {
     LBRY.rpc(

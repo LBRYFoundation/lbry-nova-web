@@ -7,8 +7,9 @@ import Error from "~/components/Error";
 import Loader from "~/components/Loader";
 
 function TagsPage(): JSX.Element {
-  const [localPreferenceResponse, setLocalPreferenceResponse] =
-    useState<object|undefined>(undefined);
+  const [localPreferenceResponse, setLocalPreferenceResponse] = useState<
+    object | undefined
+  >(undefined);
   const [tags, setTags] = useState<string[]>([]);
   const [items, setItems] = useState<object[] | string | null>(null);
   const [toggle, setToggle] = useState<string>("new");

@@ -10,7 +10,7 @@ function AppRouter({
     return <MemoryRouter>{children}</MemoryRouter>;
   }
   if (import.meta.env.SSR) {
-    return <StaticRouter location={url ?? ''}>{children}</StaticRouter>;
+    return <StaticRouter location={url ?? ""}>{children}</StaticRouter>;
   }
   return <BrowserRouter>{children}</BrowserRouter>;
 }
