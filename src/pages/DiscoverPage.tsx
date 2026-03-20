@@ -58,7 +58,6 @@ function DiscoverPage(): JSX.Element {
             verticalAlign: "middle",
             stroke: "white",
             strokeWidth: "2px",
-            padding: open ? "0px 8px 0px 12px" : null,
           }}
           icon="compass"
           viewBox="0 0 24 24"
