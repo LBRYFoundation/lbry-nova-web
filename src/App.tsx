@@ -11,11 +11,15 @@ function App({ url }: Props & { url?: string }): JSX.Element {
   const [isMenuOpen, setMenuOpen] = useState<boolean>(false);
   const [isMenuShown] = useState<boolean>(true);
 
-  const [hasDaemonRPC, setHasDaemonRPC] = useState<boolean>(false);
+  const [hasDaemonRPC, setHasDaemonRPC] = useState<boolean>(
+    LBRY.getStaticDaemonRPC() !== null,
+  );
 
-  window.addEventListener("storage", (): void => {
-    setHasDaemonRPC(LBRY.getDaemonRPC() !== null);
-  });
+  if (!import.meta.env.SSR) {
+    window.addEventListener("storage", (): void => {
+      setHasDaemonRPC(LBRY.getDaemonRPC() !== null);
+    });
+  }
 
   useEffect((): void => {
     LBRY.setDaemonRPC(LBRY.getDaemonRPC());

@@ -89,30 +89,32 @@ app.post(
 
 //app.use(vite.middlewares);
 
+const indexPath: string = path.join(path.resolve(), "dist/index.html");
+const template: string = fs.readFileSync(indexPath, "utf-8");
 app.use("*all", (req: Express.Request, res: Express.Response): void => {
   const url: string = req.originalUrl;
 
   const app: ReactNode = React.createElement(App, { url: url });
 
-  const indexPath: string = path.join(path.resolve(), "dist/index.html");
-
-  let isNotFound: boolean = false;
+  let status: number = 200;
 
   let rendered: string;
   try {
     rendered = renderToString(app);
   } catch (e) {
     if (e.message === "404_NOT_FOUND") {
-      isNotFound = true;
-      rendered = "<span>404 - Not found</span>";
+      status = 404;
+      rendered = "<span>404 - Not Found</span>";
+    } else {
+      console.error(e);
+      status = 500;
+      rendered = "<span>500 - Internal Server Error</span>";
     }
   }
 
-  const template: string = fs.readFileSync(indexPath, "utf-8");
-
   const html: string = template.replace("<!--root-->", rendered);
 
-  res.status(isNotFound ? 404 : 200).send(html);
+  res.status(status).send(html);
 });
 
 const port: number = parseInt(process.env.SERVER_PORT) || 3000;

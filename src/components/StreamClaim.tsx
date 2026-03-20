@@ -5,7 +5,7 @@ import LBRY from "~/LBRY";
 function downloadMarkdownFile(claimGetData, setMarkdown): void {
   const url: string = claimGetData?.streaming_url;
 
-  if(url){
+  if (url) {
     const input: URL = new URL("/api/proxy", window.location.href);
     input.searchParams.set("url", url);
 
