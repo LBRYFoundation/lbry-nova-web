@@ -75,7 +75,7 @@ function DiscoverPage(): JSX.Element {
             }}
             style={{
               backgroundColor:
-                toggle == "new" ? "rgb(17, 17, 17)" : "rgba(17, 17, 17, 0.4)",
+                toggle === "new" ? "rgb(17, 17, 17)" : "rgba(17, 17, 17, 0.4)",
               // backgroundColorHover: 'rgba(17, 17, 17, 0.7)',
               border: "none",
               borderRadius: "6px 0 0 6px",
@@ -97,7 +97,7 @@ function DiscoverPage(): JSX.Element {
             }}
             style={{
               backgroundColor:
-                toggle == "trending"
+                toggle === "trending"
                   ? "rgb(17, 17, 17)"
                   : "rgba(17, 17, 17, 0.4)",
               // backgroundColorHover: 'rgba(17, 17, 17, 0.7)',
@@ -120,7 +120,7 @@ function DiscoverPage(): JSX.Element {
             }}
             style={{
               backgroundColor:
-                toggle == "top" ? "rgb(17, 17, 17)" : "rgba(17, 17, 17, 0.4)",
+                toggle === "top" ? "rgb(17, 17, 17)" : "rgba(17, 17, 17, 0.4)",
               // backgroundColorHover: 'rgba(17, 17, 17, 0.7)',
               border: "none",
               borderRadius: "0 6px 6px 0",

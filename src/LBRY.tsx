@@ -39,14 +39,21 @@ function setDaemonRPC(url: string | null): void {
   } else {
     sessionStorage.setItem(storageDaemonRPCKey, url);
   }
-  window.dispatchEvent(
-    new StorageEvent("storage", {
-      key: storageDaemonRPCKey,
-      newValue: url,
-      oldValue: oldURL,
-      storageArea: sessionStorage,
-    }),
-  );
+
+  const eventDict: StorageEventInit = {
+    key: storageDaemonRPCKey,
+    storageArea: sessionStorage,
+  };
+  if(url){
+    eventDict.newValue = url;
+  }
+  if(oldURL){
+    eventDict.oldValue = oldURL;
+  }
+
+  const event: StorageEvent = new StorageEvent("storage",eventDict);
+
+  window.dispatchEvent(event);
 }
 
 async function rpcDirect(

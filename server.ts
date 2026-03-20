@@ -5,7 +5,6 @@ import express from "express";
 import fs from "fs";
 import http, { Server } from "http";
 import path from "path";
-import process from "process";
 import React, { ReactNode } from "react";
 import { renderToString } from "react-dom/server";
 import App from "~/App";

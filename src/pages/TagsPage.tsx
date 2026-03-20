@@ -8,7 +8,7 @@ import Loader from "~/components/Loader";
 
 function TagsPage(): JSX.Element {
   const [localPreferenceResponse, setLocalPreferenceResponse] =
-    useState<object>(undefined);
+    useState<object|undefined>(undefined);
   const [tags, setTags] = useState<string[]>([]);
   const [items, setItems] = useState<object[] | string | null>(null);
   const [toggle, setToggle] = useState<string>("new");
@@ -99,7 +99,7 @@ function TagsPage(): JSX.Element {
                   }}
                   style={{
                     backgroundColor:
-                      toggle == "new"
+                      toggle === "new"
                         ? "rgb(17, 17, 17)"
                         : "rgba(17, 17, 17, 0.4)",
                     // backgroundColorHover: 'rgba(17, 17, 17, 0.7)',
@@ -123,7 +123,7 @@ function TagsPage(): JSX.Element {
                   }}
                   style={{
                     backgroundColor:
-                      toggle == "trending"
+                      toggle === "trending"
                         ? "rgb(17, 17, 17)"
                         : "rgba(17, 17, 17, 0.4)",
                     // backgroundColorHover: 'rgba(17, 17, 17, 0.7)',
@@ -146,7 +146,7 @@ function TagsPage(): JSX.Element {
                   }}
                   style={{
                     backgroundColor:
-                      toggle == "top"
+                      toggle === "top"
                         ? "rgb(17, 17, 17)"
                         : "rgba(17, 17, 17, 0.4)",
                     // backgroundColorHover: 'rgba(17, 17, 17, 0.7)',

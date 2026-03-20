@@ -4,7 +4,7 @@ import Error from "~/components/Error";
 import Loader from "~/components/Loader";
 
 function SettingsPage(): JSX.Element {
-  const [settingsResponse, setSettingsResponse] = useState<object>(undefined);
+  const [settingsResponse, setSettingsResponse] = useState<object|undefined>(undefined);
 
   useEffect((): void => {
     LBRY.rpc(
