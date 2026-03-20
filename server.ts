@@ -15,9 +15,7 @@ const app: Express.Application = express();
 configDotenv({ override: true, quiet: true });
 
 app.use(express.json());
-app.use("/assets", express.static("dist/assets"));
-app.use("/favicon.ico", express.static("dist/favicon.ico"));
-
+app.use(express.static("dist"));
 app.get(
   "/api/proxy",
   (req: Express.Request, res: Express.Response, next: NextFunction): void => {
