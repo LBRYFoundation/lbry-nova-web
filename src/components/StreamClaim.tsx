@@ -4,14 +4,17 @@ import LBRY from "~/LBRY";
 
 function downloadMarkdownFile(claimGetData, setMarkdown): void {
   const url: string = claimGetData?.streaming_url;
-  const input: URL = new URL("/api/proxy", window.location.href);
-  input.searchParams.set("url", url);
 
-  fetch(input).then((resp: Response): void => {
-    resp.text().then((text: string): void => {
-      setMarkdown(text);
+  if(url){
+    const input: URL = new URL("/api/proxy", window.location.href);
+    input.searchParams.set("url", url);
+
+    fetch(input).then((resp: Response): void => {
+      resp.text().then((text: string): void => {
+        setMarkdown(text);
+      });
     });
-  });
+  }
 }
 
 function StreamClaim({ data }: Props & { data: Stream }): JSX.Element {
