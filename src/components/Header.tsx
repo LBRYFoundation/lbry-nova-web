@@ -86,7 +86,8 @@ function Header({ menuOpen, menuOpenSetter }): JSX.Element {
         q: query,
       },
     };
-    navigate(form.action + `?q=${encodeURIComponent(query)}`, options);
+
+    navigate(new URL(form.action).pathname + `?q=${encodeURIComponent(query)}`, options);
     return false;
   }
 
