@@ -1,4 +1,5 @@
 import React, { JSX, useEffect, useState } from "react";
+import { LANGUAGES } from "~/Constants";
 import LBRY from "~/LBRY";
 import Error from "~/components/Error";
 import Loader from "~/components/Loader";
@@ -47,7 +48,13 @@ function SettingsPage(): JSX.Element {
               <br />
               <br />
               <select>
-                <option value="en">English</option>
+                {Object.keys(LANGUAGES).map(
+                  (languageTag: string, i: number): JSX.Element => (
+                    <option selected={false} value={languageTag}>
+                      {LANGUAGES[languageTag][0]}
+                    </option>
+                  ),
+                )}
               </select>
               <hr />
               <b>Search only in the selected language by default</b>

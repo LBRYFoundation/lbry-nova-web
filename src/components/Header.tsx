@@ -390,6 +390,23 @@ function Header({ menuOpen, menuOpenSetter }): JSX.Element {
             {headerMenu === "settings" ? (
               <ul ref={settingsMenu}>
                 <li>
+                  <NavLink to="/preferences">
+                    <CustomSVG
+                      icon="account"
+                      viewBox="0 0 24 24"
+                      style={{
+                        fill: "transparent",
+                        height: "18px",
+                        paddingRight: "4px",
+                        stroke: "white",
+                        strokeWidth: "2px",
+                        verticalAlign: "middle",
+                      }}
+                    />{" "}
+                    <span>Preferences</span>
+                  </NavLink>
+                </li>
+                <li>
                   <NavLink to="/settings">
                     <CustomSVG
                       icon="settings"

@@ -8,6 +8,7 @@ import HelpPage from "~/pages/HelpPage";
 import HomePage from "~/pages/HomePage";
 import LibraryPage from "~/pages/LibraryPage";
 import ListsPage from "~/pages/ListsPage";
+import PreferencesPage from "~/pages/PreferencesPage";
 import SearchPage from "~/pages/SearchPage";
 import SettingsPage from "~/pages/SettingsPage";
 import TagsPage from "~/pages/TagsPage";
@@ -26,6 +27,7 @@ function AppRoutes(): JSX.Element {
       <Route path="/claim/*" element={<ClaimPage />} />
       <Route path="/wallet" element={<WalletPage />} />
       <Route path="/search" element={<SearchPage />} />
+      <Route path="/preferences" element={<PreferencesPage />} />
       <Route path="/settings" element={<SettingsPage />} />
       <Route path="/help" element={<HelpPage />} />
 
