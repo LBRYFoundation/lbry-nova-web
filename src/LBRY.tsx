@@ -1,6 +1,7 @@
 const VERSION_2_0: string = "2.0";
 
 const CLAIM_SEARCH: string = "claim_search";
+const FILE_REFLECT: string = "file_reflect";
 const GET: string = "get";
 const PREFERENCE_GET: string = "preference_get";
 const RESOLVE: string = "resolve";
@@ -118,6 +119,7 @@ async function rpc(
 
 export default {
   CLAIM_SEARCH,
+  FILE_REFLECT,
   GET,
   PREFERENCE_GET,
   RESOLVE,

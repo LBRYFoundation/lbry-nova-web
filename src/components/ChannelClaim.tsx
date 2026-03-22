@@ -183,6 +183,14 @@ function ChannelClaim({ data }: Props & { data: Channel }): JSX.Element {
           : null}
         {tab === "about" ? (
           <section>
+            {data.value.description ? (
+              <div style={{ padding: "16px 8px" }}>
+                <label style={{ display: "block", fontWeight: "bold" }}>
+                  Description
+                </label>
+                <span>{data.value.description}</span>
+              </div>
+            ) : null}
             {data.value.email ? (
               <div style={{ padding: "16px 8px" }}>
                 <label style={{ display: "block", fontWeight: "bold" }}>

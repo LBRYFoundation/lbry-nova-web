@@ -1,6 +1,9 @@
 import Props, { JSX, useEffect, useState } from "react";
+import React from "react";
 import Markdown from "react-markdown";
+import { Link } from "react-router";
 import LBRY from "~/LBRY";
+import CustomSVG from "~/components/CustomSVG";
 
 function downloadMarkdownFile(claimGetData, setMarkdown): void {
   const url: string = claimGetData?.streaming_url;
@@ -101,6 +104,51 @@ function StreamClaim({ data }: Props & { data: Stream }): JSX.Element {
   return (
     <div>
       <h1>{data.value?.title}</h1>
+      <Link
+        onClick={(event): void => {
+          event.preventDefault();
+          LBRY.rpc(
+            LBRY.getDaemonRPC(),
+            LBRY.FILE_REFLECT,
+            { stream_hash: claimGetData.stream_hash },
+            undefined,
+            LBRY.isUsingProxy(),
+          ).then((json: object): void => {
+            alert("Reflected " + Array(json).length + " blobs.");
+          });
+        }}
+        style={{ margin: "0 8px" }}
+        to={null}
+      >
+        <button
+          style={{
+            backgroundColor: "rgba(17, 17, 17, 0.4)",
+            // backgroundColorHover: 'rgba(17, 17, 17, 0.7)',
+            border: "none",
+            borderRadius: "6px",
+            color: "white",
+            cursor: "pointer",
+            fontWeight: "700",
+            height: "40px",
+            padding: "0 16px",
+          }}
+        >
+          <CustomSVG
+            icon="publish"
+            viewBox="0 0 24 24"
+            style={{
+              fill: "transparent",
+              height: "18px",
+              paddingRight: "4px",
+              stroke: "white",
+              strokeLinecap: "round",
+              strokeWidth: "2px",
+              verticalAlign: "middle",
+            }}
+          />{" "}
+          <span>Reflect claim file</span>
+        </button>
+      </Link>
       {data.value?.stream_type === "audio" ? (
         <div>
           <audio controls src={claimGetData?.streaming_url || null}></audio>

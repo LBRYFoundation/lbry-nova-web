@@ -87,7 +87,10 @@ function Header({ menuOpen, menuOpenSetter }): JSX.Element {
       },
     };
 
-    navigate(new URL(form.action).pathname + `?q=${encodeURIComponent(query)}`, options);
+    navigate(
+      new URL(form.action).pathname + `?q=${encodeURIComponent(query)}`,
+      options,
+    );
     return false;
   }
 
