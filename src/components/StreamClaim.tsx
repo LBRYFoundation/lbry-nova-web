@@ -114,7 +114,7 @@ function StreamClaim({ data }: Props & { data: Stream }): JSX.Element {
             undefined,
             LBRY.isUsingProxy(),
           ).then((json: object): void => {
-            alert("Reflected " + Array(json).length + " blobs.");
+            alert("Reflected " + json.result.length + " blobs.");
           });
         }}
         style={{ margin: "0 8px" }}
